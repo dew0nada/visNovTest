@@ -1,0 +1,23 @@
+{
+	"start" :{
+		"text" : "hello",
+		"name" : "char",
+		"mood" : "run",
+		"next" : "A"
+	},
+	"A": {
+		"text" : "testing",
+		"name" : "char",
+		"mood" : "idle",
+		"choices" : {
+			"blue" : "start",
+			"red" : "RED"
+		}
+	},
+	"RED" : {
+		"text" : "middle choice",
+		"name" : "char",
+		"mood" : "attack",
+		"next" : "A"
+	}
+}
