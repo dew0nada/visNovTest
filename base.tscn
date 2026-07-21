@@ -1,10 +1,11 @@
-[gd_scene load_steps=30 format=3 uid="uid://clr2hhu83u5n4"]
+[gd_scene load_steps=29 format=3 uid="uid://clr2hhu83u5n4"]
 
 [ext_resource type="Texture2D" uid="uid://jih30grguhun" path="res://asset/idle.png" id="1_3eqp6"]
 [ext_resource type="Script" path="res://basegame.gd" id="1_fd6ih"]
 [ext_resource type="Texture2D" uid="uid://ccoavoyqjdmk5" path="res://asset/charge.png" id="2_iusyy"]
 [ext_resource type="Texture2D" uid="uid://3nuc5w2uax4g" path="res://asset/run.png" id="4_350h6"]
 [ext_resource type="Script" path="res://choices.gd" id="5_hpe8h"]
+[ext_resource type="ButtonGroup" uid="uid://dr1lvxwh5lqck" path="res://new_button_group.tres" id="6_qgg4j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3jh17"]
 atlas = ExtResource("2_iusyy")
@@ -163,10 +164,6 @@ font_size = 45
 [sub_resource type="LabelSettings" id="LabelSettings_ds2wx"]
 font_size = 66
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_jb5vh"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_kjid8"]
-
 [node name="Control" type="Control" node_paths=PackedStringArray("charName", "charText", "charSprite", "choiceSys")]
 layout_mode = 3
 anchors_preset = 15
@@ -223,11 +220,11 @@ text = "text is here"
 label_settings = SubResource("LabelSettings_ds2wx")
 
 [node name="choices" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("5_hpe8h")
-group_ch = SubResource("ButtonGroup_jb5vh")
+group_ch = ExtResource("6_qgg4j")
 
 [node name="ColorRect" type="ColorRect" parent="choices"]
-visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
@@ -239,20 +236,14 @@ offset_bottom = 509.0
 
 [node name="Button" type="Button" parent="choices/VBoxContainer"]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_kjid8")
+toggle_mode = true
+button_group = ExtResource("6_qgg4j")
 text = "choice 1"
 
 [node name="Button2" type="Button" parent="choices/VBoxContainer"]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_kjid8")
+toggle_mode = true
+button_group = ExtResource("6_qgg4j")
 text = "choice 1"
 
-[node name="Button3" type="Button" parent="choices/VBoxContainer"]
-layout_mode = 2
-button_group = SubResource("ButtonGroup_kjid8")
-text = "choice 1"
-
-[node name="Button4" type="Button" parent="choices/VBoxContainer"]
-layout_mode = 2
-button_group = SubResource("ButtonGroup_kjid8")
-text = "choice 1"
+[connection signal="next_id" from="choices" to="." method="_on_choices_next_id"]

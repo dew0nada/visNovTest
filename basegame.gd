@@ -17,17 +17,13 @@ func _ready() -> void:
 	get_json(jsonSrc)
 	load_block(current_block)
 
-
-
-func get_json(scr: String):
-	var jsonText = FileAccess.get_file_as_string(scr)
+func get_json(src: String):
+	var jsonText = FileAccess.get_file_as_string(src)
 	scene_script = JSON.parse_string(jsonText)
 	current_block = scene_script["start"]
 
-
-
 func load_block(block : Dictionary):
-	if block.has("text") : 
+	if block.has("name") : 
 		charName.text = block["name"]
 		charText.text = block["text"]
 		charSprite.play(block["mood"])
@@ -39,6 +35,7 @@ func load_block(block : Dictionary):
 		choiceSys.set_choices(block["choices"])
 		
 func next():
+	choiceSys.hide()
 	if next_block == null:
 		get_tree().quit()
 	else:
@@ -48,3 +45,7 @@ func next():
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
 		next()
+
+func _on_choices_next_id(id: String) -> void:
+	next_block = scene_script[id]
+	next()

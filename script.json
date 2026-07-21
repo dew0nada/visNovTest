@@ -18,6 +18,6 @@
 		"text" : "middle choice",
 		"name" : "char",
 		"mood" : "attack",
-		"next" : "A"
+		"next" : "start"
 	}
 }
